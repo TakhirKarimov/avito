@@ -1,0 +1,7 @@
+database:
+  dsn: "root:avito@tcp(avito:3306)/avito?charset=utf8mb4&parseTime=True&loc=Local"
+
+cache_database:
+  address: "redis"
+  port: 6379
+  password: ""

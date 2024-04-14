@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  go-app:
+    build: .
+    ports:
+      - "8089:8089"
+    depends_on:
+      - db
+      - redis
+    restart: always
+
+  db:
+    build: ./mysql
+    container_name: avito
+    environment:
+      MYSQL_ROOT_PASSWORD: avito
+      MYSQL_DATABASE: avito
+      MYSQL_USER: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    depends_on:
+      - db
+    environment:
+      - PMA_HOST=avito
+      - PMA_USER=root
+      - PMA_PORT=3306
+      - PMA_PASSWORD=avito
+    ports:
+      - 9090:80
+    restart: always
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_data:
