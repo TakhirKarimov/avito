@@ -8,5 +8,5 @@ CREATE TABLE content (
     user_token VARCHAR(255),
     admin_token VARCHAR(255),
     content VARCHAR(255),
-    status INT
+    is_active INT
 );

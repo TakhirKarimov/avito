@@ -16,7 +16,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: avito
       MYSQL_DATABASE: avito
-      MYSQL_USER: root
     ports:
       - "3306:3306"
     volumes:
