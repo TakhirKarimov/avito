@@ -41,12 +41,12 @@ func GetBanner(c echo.Context) error {
 	).Info("start processing get_banner")
 
 	limit, err := strconv.Atoi(limitStr)
-	if err != nil {
+	if limitStr != "" && err != nil {
 		logging.WithAttrs(ctx).Error("failed get limit", err)
 		return c.String(http.StatusBadRequest, "incorrect limit")
 	}
 	offset, err := strconv.Atoi(offsetStr)
-	if err != nil {
+	if offsetStr != "" && err != nil {
 		logging.WithAttrs(ctx).Error("failed get offset", err)
 		return c.String(http.StatusBadRequest, "incorrect offset")
 	}

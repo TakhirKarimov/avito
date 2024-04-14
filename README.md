@@ -32,7 +32,40 @@
 ## Нагрузочное тестирование
 
 #### Без использования кэширования:
-![](images/withcache.png)
+![](images/withOutCache.png)
 
 #### С кэшом:
 ![](images/withcache.png)
+
+### Примеры запросов:
+1. curl -X POST "127.0.0.1:8089/banners" \
+   -H "Content-Type: application/json" \
+   -H "token: admin" \
+   -d '{
+   "tag_ids": [101, 102],
+   "feature_id": 50,
+   "content": {
+   "title": "some_title",
+   "text": "some_text",
+   "url": "some_url"
+   },
+   "is_active": true
+   }'
+2. curl -X GET "127.0.0.1:8089/user_banner?tag_id=101&feature_id=50&use_last_revision=true"  -H "token: user"
+3. curl -X GET "127.0.0.1:8089/banners?feature_id=50&tag_id=102&limit=10" -H "token: admin"
+4. curl -X PATCH "127.0.0.1:8089/banner/1" \
+   -H "Content-Type: application/json" \
+   -H "token: admin" \
+   -d '{
+   "tag_ids": [101],
+   "feature_id": 50,
+   "content": {
+   "title": "Updated Title",
+   "text": "Updated text",
+   "url": "http://updatedurl.com"
+   },
+   "is_active": true
+   }'
+5. curl -X DELETE "127.0.0.1:8089/banner/1"  -H "token: admin"
+
+## Спасибо!

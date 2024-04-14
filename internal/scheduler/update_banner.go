@@ -50,7 +50,7 @@ func UpdateBanner(ctx context.Context, traceId, adminToken string, req *UpdateBa
 			"tag_id":     tagId,
 			"feature_id": req.FeatureID,
 			"content":    string(contentJSON),
-			"isActive":   isActiveInt,
+			"is_active":  isActiveInt,
 		}
 		err := repo.UpdateBanner(req.Id, m)
 		if err != nil {

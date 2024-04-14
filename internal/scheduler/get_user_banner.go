@@ -7,11 +7,9 @@ import (
 	"context"
 	"github.com/theartofdevel/logging"
 	"strings"
-	"time"
 )
 
 func GetUserBannerHandler(ctx context.Context, traceId, token, tagId, featureId, useLastRevision string) (string, error) {
-	time.Sleep(3 * time.Millisecond)
 	logging.L(ctx).With(logging.StringAttr("trace_id", traceId)).Info("task being processed")
 	tokenRepo := repository.NewTokensRepo()
 	tableToken, err := tokenRepo.GetUserToken()

@@ -6,17 +6,19 @@ import (
 	"avito/servers"
 	"github.com/spf13/cobra"
 	"log"
-	"time"
+	"sync"
 )
 
 var webCmd = &cobra.Command{
 	Use: "web",
 	Run: func(cmd *cobra.Command, args []string) {
+		wg := sync.WaitGroup{}
+		wg.Add(1)
 		s := di.Get("servers").(*servers.ServerManager)
 		if err := s.Run(); err != nil {
 			log.Fatal("failed to start server")
 		}
-		time.Sleep(1 * time.Hour)
+		wg.Wait()
 	},
 }
 
