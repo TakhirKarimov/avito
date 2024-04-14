@@ -37,10 +37,13 @@
 #### С кэшом:
 ![](images/withcache.png)
 
+Результаты показывают, что с использованием кэширования, после прогрева кэша, нам удалось сократить время ответа сервера в 2 раза: с 6мс до 3 мс.
+
+
 ### Примеры запросов:
-1. curl -X POST "127.0.0.1:8089/banners" \
-   -H "Content-Type: application/json" \
-   -H "token: admin" \
+1. curl -X POST "127.0.0.1:8089/banners" \\   
+   -H "Content-Type: application/json" \\   
+   -H "token: admin" \\   
    -d '{
    "tag_ids": [101, 102],
    "feature_id": 50,
@@ -53,9 +56,9 @@
    }'
 2. curl -X GET "127.0.0.1:8089/user_banner?tag_id=101&feature_id=50&use_last_revision=true"  -H "token: user"
 3. curl -X GET "127.0.0.1:8089/banners?feature_id=50&tag_id=102&limit=10" -H "token: admin"
-4. curl -X PATCH "127.0.0.1:8089/banner/1" \
-   -H "Content-Type: application/json" \
-   -H "token: admin" \
+4. curl -X PATCH "127.0.0.1:8089/banner/1" \\  
+   -H "Content-Type: application/json" \\  
+   -H "token: admin" \\   
    -d '{
    "tag_ids": [101],
    "feature_id": 50,
